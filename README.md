@@ -1,159 +1,136 @@
-# Recta
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unittest;
+using NUnit.Framework;
 
-namespace Unittest
+
+namespace RecTest
 {
-    class Program
+    class testclass
     {
-        public static int ValidateMenuSelection()
+        [Test]
+
+        public void GetLength_input4_expectedLengthEquals4()
+
         {
-            string userInput = "";
-            bool validMenuSelect = false;
+            //Arrange
+            int l = 4;
+            int w = 4;
+            Rectangle testRectangle = new Rectangle(l, w);
 
-            while (validMenuSelect == false)
-            {
+            //Act
+
+            int length = testRectangle.Getlength();
+
+            //Assert
+            Assert.AreEqual(l, length);
 
 
-                Console.WriteLine("1:Get length of the rectangle");
-                Console.WriteLine("2:change  length of the rectangle");
-                Console.WriteLine("3:Get width of the rectangle");
-                Console.WriteLine("4:Change width  of the rectangle");
-                Console.WriteLine("5:Get perimeter of the rectangle");
-                Console.WriteLine("6:Get Area of the rectangle");
-                Console.WriteLine("7:Exit");
-                Console.WriteLine("Please select an option from the given menu and enter number :\n");
-                userInput = Console.ReadLine();
 
-                if (userInput != "1" &&
-                    userInput != "2" &&
-                    userInput != "3" &&
-                    userInput != "4" &&
-                    userInput != "5" &&
-                    userInput != "6" &&
-                    userInput != "7")
+        }
+        [Test]
 
-                {
-                    Console.WriteLine("Incorrect option please try again \n");
+        public void GetWidth_input5_expectedWidthEquals5()
 
-                }
-                else
-                {
-                    validMenuSelect = true;
-                }
-            }
-            Console.WriteLine();
-            return int.Parse(userInput);
+        {
+            //Arrange
+            int l = 3;
+            int w = 5;
+            Rectangle testRectangle = new Rectangle(l, w);
+
+            //Act
+
+            int width = testRectangle.Getwidth();
+
+            //Assert
+            Assert.AreEqual(w, width);
+
+
+        }
+        [Test]
+
+        public void SetWidth_input8_expectedWidthEquals8()
+
+        {
+            //Arrange
+            int l = 3;
+            int w = 8;
+            Rectangle testRectangle = new Rectangle(l, w);
+
+            //Act
+
+            int width = testRectangle.Setwidth(w);
+
+            //Assert
+            Assert.AreEqual(w, width);
+
 
         }
 
-        public static int ValidateUserInput(string rectside)
+        [Test]
+
+        public void SetLength_input6_expectedLengthEquals6()
+
         {
-            int number = 1;
-            bool isValid = false;
+            //Arrange
+            int l = 6;
+            int w = 5;
+            Rectangle testRectangle = new Rectangle(l, w);
 
-            while (isValid == false)
-            {
-                Console.WriteLine($"please enter your {rectside} of your rectangle");
-                string userInput = Console.ReadLine();
-                Console.WriteLine();
+            //Act
 
-                bool result =  int.TryParse(userInput, out number);
-                if (result == false)
-                {
-                    Console.WriteLine("value  not valid  , try again \n");
-                }
+            int width = testRectangle.Setlength(w);
 
-                else if (number < 0 )
-                {
-                    Console.WriteLine("Number should be greater than zero");
-                
-            }
-                else
-                {
-                    isValid = true;
-                }
+            //Assert
+            Assert.AreEqual(w, width);
+
+
         }
-            return number; 
-    }
 
-        static void Main(String [] args)
-       
+        [Test]
+
+        public void GetPerimeter_inputlength2_inputwidth_7expectedPerimeterEquals18()
+
         {
-            Rectangle  c  = new Rectangle();
-            bool validrectangleSelect = false;
-            string rectangleSelection;
-            int selection;
+            //Arrange
+            int l = 2;
+            int w = 7;
 
-            while (validrectangleSelect == false)
-            {
-                Console.WriteLine("1 = Create a default \n");
-                Console.WriteLine("2 = create custom rectangle\n");
-                Console.WriteLine("Choose a menu item to begin:");
-                rectangleSelection = Console.ReadLine();
-                Console.WriteLine();
+            Rectangle testRectangle = new Rectangle(l, w);
+            int expectedresult = 2 * (l + w);
 
-                if (rectangleSelection != "1" && rectangleSelection != "2")
-                {
-                    Console.WriteLine("That's not a valid selection, please try again \n");
-                }
-                else if (int.Parse(rectangleSelection) == 1)
-                {
-                    validrectangleSelect = true;
-                    
-                }
-                
-                
-                  
-             
-            }
+            //Act
+
+            int Perimeter = testRectangle.GetPerimeter();
+
+            //Assert
+            Assert.AreEqual(expectedresult, Perimeter);
+
+        }
+        [Test]
+
+        public void GetArea_inputlength11_inputwidth_12expectedAreaEquals132()
+
+        {
+            //Arrange
+            int l = 11;
+            int w = 12;
+
+            Rectangle testRectangle = new Rectangle(l, w);
+            int expectedresult = l * w;
+
+            //Act
+
+            int Area = testRectangle.GetArea();
+
+            //Assert
+            Assert.AreEqual(expectedresult, Area);
 
 
-            selection = ValidateMenuSelection();
 
-            while (selection != 7)
-            {
-                int  result;
-
-                switch (selection)
-                {
-                    case 1:
-                        Console.WriteLine($"length  is: {c.Getlength()}\n");
-                        break;
-                    case 2:
-                        result = ValidateUserInput("length");
-                        c.Setlength(result);
-                        break;
-                    case 3:
-                        Console.WriteLine($"width is: {c.Getwidth()}\n");
-                        break;
-                    case 4:
-                        result = ValidateUserInput("width");
-                        c.Setwidth(result);
-                        break;
-                    case 5:
-                        Console.WriteLine($"The result of {c.Getlength()*2} + {c.Getwidth()*2} is: {c.GetPerimeter()}\n");
-                        break;      
-                    case 6:
-                        Console.WriteLine($"The result of {c.Getlength()} * {c.Getwidth()} is: {c.GetArea()}\n");
-                        break;
-                    
-                    
-                }
-
-                selection = ValidateMenuSelection();
-
-            }
-
+        }
         }
     }
-}
-
-
-
-        
