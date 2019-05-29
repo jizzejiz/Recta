@@ -3,134 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unittest;
-using NUnit.Framework;
 
-
-namespace RecTest
+namespace Unittest
 {
-    class testclass
-    {
-        [Test]
-
-        public void GetLength_input4_expectedLengthEquals4()
-
-        {
-            //Arrange
-            int l = 4;
-            int w = 4;
-            Rectangle testRectangle = new Rectangle(l, w);
-
-            //Act
-
-            int length = testRectangle.Getlength();
-
-            //Assert
-            Assert.AreEqual(l, length);
+    
+            public class Rectangle
+            {
+                private int length;
+                private int width;
 
 
 
-        }
-        [Test]
 
-        public void GetWidth_input5_expectedWidthEquals5()
+                public Rectangle()
+                {
 
-        {
-            //Arrange
-            int l = 3;
-            int w = 5;
-            Rectangle testRectangle = new Rectangle(l, w);
+                    length = 1;
+                    width = 1;
 
-            //Act
+                }
 
-            int width = testRectangle.Getwidth();
+                public Rectangle(int length, int width)
+                {
+                    this.length = length;
+                    this.width = width;
 
-            //Assert
-            Assert.AreEqual(w, width);
+                }
 
+                public int Getlength()
+                {
+                    return length;
+                }
 
-        }
-        [Test]
+                public int Setlength(int length)
+                {
+                    this.length = length;
+                    return this.length;
 
-        public void SetWidth_input8_expectedWidthEquals8()
+                }
 
-        {
-            //Arrange
-            int l = 3;
-            int w = 8;
-            Rectangle testRectangle = new Rectangle(l, w);
+                public int Getwidth()
+                {
+                    return width;
+                }
 
-            //Act
+                public int Setwidth(int width)
+                {
+                    this.width = width;
+                    return this.width;
+                }
 
-            int width = testRectangle.Setwidth(w);
+                public int GetPerimeter()
+                {
+                    return (width * 2) + (length * 2);
 
-            //Assert
-            Assert.AreEqual(w, width);
+                }
 
-
-        }
-
-        [Test]
-
-        public void SetLength_input6_expectedLengthEquals6()
-
-        {
-            //Arrange
-            int l = 6;
-            int w = 5;
-            Rectangle testRectangle = new Rectangle(l, w);
-
-            //Act
-
-            int width = testRectangle.Setlength(w);
-
-            //Assert
-            Assert.AreEqual(w, width);
-
-
-        }
-
-        [Test]
-
-        public void GetPerimeter_inputlength2_inputwidth_7expectedPerimeterEquals18()
-
-        {
-            //Arrange
-            int l = 2;
-            int w = 7;
-
-            Rectangle testRectangle = new Rectangle(l, w);
-            int expectedresult = 2 * (l + w);
-
-            //Act
-
-            int Perimeter = testRectangle.GetPerimeter();
-
-            //Assert
-            Assert.AreEqual(expectedresult, Perimeter);
-
-        }
-        [Test]
-
-        public void GetArea_inputlength11_inputwidth_12expectedAreaEquals132()
-
-        {
-            //Arrange
-            int l = 11;
-            int w = 12;
-
-            Rectangle testRectangle = new Rectangle(l, w);
-            int expectedresult = l * w;
-
-            //Act
-
-            int Area = testRectangle.GetArea();
-
-            //Assert
-            Assert.AreEqual(expectedresult, Area);
-
-
-
-        }
+                public int GetArea()
+                {
+                    return length * width;
+                }
         }
     }
+
+
+
+
